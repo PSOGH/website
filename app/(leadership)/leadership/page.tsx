@@ -86,7 +86,7 @@ export default function LeadershipPage({}: Props) {
       <TableBody>
         {
           positions.map(({ name, position }) => <TableRow>
-            <TableCell className="font-medium">{name}</TableCell>
+            <TableCell className="font-medium" key={name}>{name}</TableCell>
             <TableCell>{position}</TableCell>
           </TableRow>)
         }

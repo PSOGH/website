@@ -9,7 +9,7 @@ export default function VolunteerPage({}: Props) {
       Volunteer with Us
     </h2>
     <p className="leading-7 [&:not(:first-child)]:mt-6">
-      Welcome to the Punjabi Society of Greater Houston's volunteer page! Our society is dedicated to promoting and preserving Punjabi culture and heritage within the Greater Houston. As a volunteer with our society, you will have the opportunity to help us achieve our goals and contribute to the community.
+      Welcome to the Punjabi Society of Greater Houston&apos;'s volunteer page! Our society is dedicated to promoting and preserving Punjabi culture and heritage within the Greater Houston. As a volunteer with our society, you will have the opportunity to help us achieve our goals and contribute to the community.
     </p>
     <p className="leading-7 [&:not(:first-child)]:mt-6">
       Our society conducts a range of activities throughout the year, including cultural events, community service projects, and educational programs. We rely on the support and dedication of our volunteers to make these events a success. Some of the volunteer opportunities available include event planning and coordination, marketing and promotion, setup and cleanup, and more.
