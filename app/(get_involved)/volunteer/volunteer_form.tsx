@@ -66,7 +66,7 @@ export default function VolunteerFormComponent({}: Props) {
         gender: 'male',
       },
       teamSize: 1,
-      submissionDate: z.coerce.date().parse(moment().format('YYYY-MM-DD HH:mm:ss')),
+      // submissionDate: moment().format('YYYY-MM-DD'),
       participants: [],
       email: '',
       phone: '',
@@ -358,7 +358,7 @@ return <Form {...form}>
             <FormItem
               className='col-span-2'
             >
-              <FormControl><Input type='hidden' {...field} /></FormControl>
+              <FormControl><Input type='hidden' {...field} value={moment().format('YYYY-MM-DD')} /></FormControl>
             </FormItem>
           )}
         />

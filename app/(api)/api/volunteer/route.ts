@@ -47,9 +47,22 @@ export async function POST(request: NextRequest) {
       team: team
     }, {status: 200});
   } catch (error) {
-    console.log(error);
-    const error_text = error?.message?.toString() || error
-    console.log(error_text)
+    if(!(typeof error === 'object')) return NextResponse.json({
+      message: 'There was an error submitting your information. Please try again later.',
+      error: 'Unknown Error',
+    }, {status: 500})
+
+    if((error == null)) return NextResponse.json({
+      message: 'There was an error submitting your information. Please try again later.',
+      error: 'Unknown Error',
+    }, {status: 500})
+
+    if(!('message' in error)) return NextResponse.json({
+      message: 'There was an error submitting your information. Please try again later.',
+      error: 'Unknown Error',
+    }, {status: 500})
+
+    const error_text = ('message' in error ? error.message : error) as string
     if (error_text.includes('duplicate key value violates unique constraint') && error_text.includes('team_team_key')) {
       return NextResponse.json({
         message: 'This team name has already been submitted. Please choose another team name.',
