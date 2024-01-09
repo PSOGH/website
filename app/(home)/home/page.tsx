@@ -16,7 +16,7 @@ export default function HomePage({}: Props) {
     </video>
     <Card className='mt-2'>
       <CardHeader className='text-xl font-bold'>
-        <CardTitle>Upcoming Event: Vaisakhi Mela 2024</CardTitle>
+        <CardTitle>Upcoming Event: Grand Vaisakhi Mela 2024</CardTitle>
         <CardDescription>April 20, 2024 | <a target="_blank" rel="noreferrer" href='https://maps.app.goo.gl/GBBsvfdFb6KKHguE8'>Dunham Theatre</a></CardDescription>
         <div className='grid grid-cols-10 gap-2 mt-2'>
           <div className='col-span-10 text-left text-xl font-bold'></div>

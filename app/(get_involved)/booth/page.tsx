@@ -3,9 +3,9 @@ import React from 'react'
 
 type Props = {}
 
-export default function DonatePage({}: Props) {
-  redirect('/sponsor')
+export default function BoothPage({}: Props) {
+  redirect('/booths')
   return (
-    <div>DonatePage</div>
+    <div>BoothPage</div>
   )
 }

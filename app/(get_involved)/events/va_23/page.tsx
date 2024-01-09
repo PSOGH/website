@@ -1,21 +1,11 @@
 import React from 'react'
-import Vaisakhi2024 from './va_24'
 
-type Props = {
-  params: {
-    event_id: string
-  }
-}
+type Props = {}
 
-export default function EventDetailsPage({
-  params: { event_id }
-}: Props) {
-  if (event_id === 'va_24') {
-    return <Vaisakhi2024 />
-  }
+export default function Vaisakhi23({}: Props) {
   return <>
     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-      {event_id == 'va_23' ? 'Grand Vaisakhi Mela 2023' : 'Event Not Found'}
+      Grand Vaisakhi Mela 2023
     </h2>
     <h4 className="scroll-m-20 text-xl font-semibold tracking-tight" id='Sponsors'>
       Sponsors
