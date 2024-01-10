@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { sponsorFormSchema } from './form_schema';
@@ -25,6 +25,7 @@ const sponsorshipLevels: {key: string, value: string}[] = [
 type Props = {}
 
 function SponsorFormElementComponent({}: Props) {
+  const [file, setFile] = useState<File>();
   const form = useForm<z.infer<typeof sponsorFormSchema>>({
     resolver: zodResolver(sponsorFormSchema),
     defaultValues: {
@@ -46,25 +47,27 @@ function SponsorFormElementComponent({}: Props) {
     }
   }
 
-  const reader = new FileReader();
-  reader.addEventListener(
-    "load",
-    () => {
-      // convert image file to base64 string
-      const base64value = reader.result as string;
-      console.log('base64value', base64value)
-      form.setValue('sponsor_logo_file', base64value)
-    },
-    false,
-  );
+  useEffect(() => {
+    if (!file) {
+      return;
+    }
+    const reader = new FileReader();
+    reader.addEventListener(
+      "load",
+      () => {
+        // convert image file to base64 string
+        const base64value = reader.result as string;
+        console.log('base64value', base64value)
+        form.setValue('sponsor_logo_file', base64value)
+      },
+      false,
+    );
+    reader.readAsDataURL(file as File);
+  }, [file])
 
   function onLogoFileChange(event: React.ChangeEvent<HTMLInputElement>) {
-    console.log('onLogoFileChange', event)
+    setFile(event.target.files?.[0])
     if (event.target.files?.length) {
-      reader.readAsDataURL(event.target.files[0]);
-      console.log('event.target.files[0].name', event.target.files[0].name)
-      console.log('event.target.files[0].type', event.target.files[0].type)
-      console.log('event.target.value', event.target.value)
       form.setValue('sponsor_logo_filename', event.target.value)
     } else {
       form.setValue('sponsor_logo_file', '')
