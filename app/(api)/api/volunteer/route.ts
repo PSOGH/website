@@ -2,19 +2,15 @@ import { NextRequest, NextResponse } from 'next/server'
 
 import { createParticipant, createTeam, getTeams } from '@/lib/controllers/volunteers';
 
-// export async function GET(request: NextRequest) {
-//   return NextResponse.json({
-//     message: 'This is the api endpoint for volunteer submissions.',
-//     data: await getTeams(),
-//   }, {status: 200});
-// }
+export async function GET(request: NextRequest) {
+  return NextResponse.json({
+    message: 'This is the api endpoint for volunteer submissions.',
+    data: await getTeams(),
+  }, {status: 200});
+}
 
 export async function POST(request: NextRequest) {
-  console.log('In POST')
-  console.log(request)
   const data = await request.json();
-  // console.log(body)
-  // const data = JSON.parse(body);
   const teamData = {
     'first_name': data.team_lead.firstName,
     'last_name': data.team_lead.lastName,
@@ -27,21 +23,29 @@ export async function POST(request: NextRequest) {
     'team_size': data.teamSize,
     'event': data.event,
   };
-  console.log(data)
-  console.log('In POST for teamData')
-  console.log(teamData)
   try {
     const team = await createTeam(teamData);
+    const teamLead = await createParticipant({
+      'TeamId': team.id,
+      'first_name': teamData.first_name,
+      'last_name': teamData.last_name,
+      'age': teamData.lead_age,
+      'gender': teamData.lead_gender,
+    });
+
+    console.log(team)
+    console.log(teamLead)
+
     data.participants.map(async (participant: any) => {
       createParticipant({
-        'TeamId': team.id,
+        'TeamId': teamLead.TeamId,
         'first_name': participant.firstName,
         'last_name': participant.lastName,
         'age': participant.age,
         'gender': participant.gender,
       });
     });
-    console.log(team);
+
     return NextResponse.json({
       message: 'Thank you for your interest in volunteering with us! We will be in touch soon.',
       team: team

@@ -1,4 +1,4 @@
-import { jsonArrayFrom } from 'kysely/helpers/postgres';
+import { jsonArrayFrom, jsonObjectFrom } from 'kysely/helpers/postgres';
 
 import { db } from '@/lib//db';
 import { NewParticipant, NewTeam } from '@/lib/models/volunteers';
@@ -8,6 +8,16 @@ export async function getTeams() {
     .selectFrom('team')
     .select((eb) => [
       'id',
+      jsonObjectFrom(
+        eb.selectNoFrom([
+          'first_name as firstName',
+          'last_name as lastName',
+          'email as email',
+          'phone as phone',
+          'lead_age as age',
+          'lead_gender as gender'
+        ])
+      ).as('lead'),
       jsonArrayFrom(
         eb.selectFrom('participant')
           .select(['participant.first_name as firstName', 'participant.last_name as lastName', 'participant.age as age', 'participant.gender as gender'])

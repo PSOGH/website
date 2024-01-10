@@ -1,5 +1,4 @@
 'use client'
-import moment from 'moment'
 import React from 'react'
 import { useForm } from "react-hook-form"
 import { toast } from 'sonner'
@@ -20,6 +19,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { submitVolunteer } from './submit_volunteer'
+import { formSchema } from './form_schema'
 
 
 const Events: {key: string, value: string}[] = [
@@ -34,25 +34,6 @@ const Events: {key: string, value: string}[] = [
 ]
 
 
-const individualParticipantFormSchema = z.object({
-  firstName: z.string().min(2).max(50),
-  lastName: z.string().min(2).max(50),
-  age: z.coerce.number().int().min(1).max(100),
-  gender: z.enum(['male', 'female', 'n/a'])
-})
-
-const formSchema = z.object({
-  team_lead: individualParticipantFormSchema,
-  email: z.string().email(),
-  phone: z.string().regex(/^\d{10}$/),
-  team: z.string().optional(),
-  teamSize: z.coerce.number().int().min(1).max(25),
-  event: z.string(),
-  participants: z.array(individualParticipantFormSchema),
-  submissionDate: z.coerce.date().optional(),
-  comments: z.string().max(500).optional(),
-})
-
 type Props = {}
 
 export default function VolunteerFormComponent({}: Props) {
@@ -60,25 +41,17 @@ export default function VolunteerFormComponent({}: Props) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       team_lead: {
-        firstName: '',
-        lastName: '',
         age: 18,
         gender: 'male',
       },
       teamSize: 1,
-      // submissionDate: moment().format('YYYY-MM-DD'),
       participants: [],
-      email: '',
-      phone: '',
-      team: '',
-      event: '',
-      comments: '',
     },
   })
 
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const result = JSON.parse(await submitVolunteer(JSON.stringify(values)));
+    const result = await submitVolunteer(values);
     if (!('error' in result)) {
       toast.success('Volunteer form submitted successfully')
       toast.success(result.message)
@@ -90,7 +63,7 @@ export default function VolunteerFormComponent({}: Props) {
   
   }
 
-return <Form {...form}>
+  return <Form {...form}>
     <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
       <div className='grid grid-cols-6 gap-4'>
         {/* First Name */}
@@ -350,19 +323,7 @@ return <Form {...form}>
         }
       </div>
       <div className='flex justify-end'>
-        <FormField
-          control={form.control}
-          name={`submissionDate`}
-          key={`submissionDate`}
-          render={({ field }) => (
-            <FormItem
-              className='col-span-2'
-            >
-              <FormControl><Input type='hidden' {...field} value={moment().format('YYYY-MM-DD')} /></FormControl>
-            </FormItem>
-          )}
-        />
-        <Button variant='outline' onClick={() => form.reset()}>Reset</Button>
+        <Button variant='outline' onClick={() => form.reset()} className='mx-2'>Reset</Button>
         <Button type='submit'>Submit</Button>
       </div>
     </form>
