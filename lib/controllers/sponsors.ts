@@ -1,5 +1,5 @@
 import { db } from '@/lib/db';
-import { NewSponsor } from '@/lib/models/sponsors';
+import { NewSponsor, SponsorUpdate } from '@/lib/models/sponsors';
 
 export async function getSponsors() {
   return await db
@@ -27,10 +27,10 @@ export async function createSponsor(sponsor: NewSponsor) {
   return await db.insertInto('sponsor').values(sponsor).returningAll().executeTakeFirstOrThrow();
 }
 
-export async function updateSponsor(sponsor: NewSponsor) {
+export async function updateSponsor(sponsor: SponsorUpdate) {
   return await db.updateTable('sponsor').set(sponsor).where('id', '=', (sponsor.id as number)).returningAll().executeTakeFirstOrThrow();
 }
 
-export async function deleteSponsor(sponsor: NewSponsor) {
+export async function deleteSponsor(sponsor: SponsorUpdate) {
   return await db.deleteFrom('sponsor').where('id', '=', (sponsor.id as number)).execute();
 }
