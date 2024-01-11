@@ -16,7 +16,7 @@ export async function up(db: Kysely<any>): Promise<void> {
   //   CREATE TABLE
   // "booth" (
   //   "id" serial PRIMARY KEY,
-  //   "booth_name" VARCHAR NOT NULL,
+  //   "business_name" VARCHAR NOT NULL,
   //   "business_owner" VARCHAR NOT NULL,
   //   "contact_email" VARCHAR NOT NULL,
   //   "contact_phone" VARCHAR NOT NULL,

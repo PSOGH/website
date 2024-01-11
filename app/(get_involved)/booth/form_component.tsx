@@ -11,8 +11,22 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 type Props = {}
+
+const businesses: string[] = [
+  'Food Booth',
+  'Real Estate',
+  'Jwellery Store',
+  'Clothing Store',
+  'Insurance',
+  'Non Profit',
+  'Art',
+  'Skin Care Products',
+  'Candle Store',
+  'Others'
+]
 
 function BoothFormElementComponent({}: Props) {
   const [file, setFile] = useState<File>();
@@ -23,7 +37,7 @@ function BoothFormElementComponent({}: Props) {
   })
 
   async function onSubmit(values: z.infer<typeof boothFormSchema>) {
-    console.log(values)
+    console.log('onSubmit', values)
 
     const result = await submitBooth(values);
     if(!('error' in result)) {
@@ -33,6 +47,8 @@ function BoothFormElementComponent({}: Props) {
     } else {
       toast.error('Error submitting booth request');
       toast.error(result.message);
+      toast.error(JSON.stringify(result.error));
+      console.log('Error submitting booth request', result.error)
     }
   }
 
@@ -65,7 +81,7 @@ function BoothFormElementComponent({}: Props) {
   }
 
   return <Form {...form}>
-    <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+    <form onSubmit={form.handleSubmit(onSubmit, console.log)} className='space-y-8'>
       <div className='grid grid-cols-6 gap-4'>
 
         {/* Business Name */}
@@ -133,6 +149,48 @@ function BoothFormElementComponent({}: Props) {
         />
 
         {/* Booth Type */}
+        <FormField
+          control={form.control}
+          name='booth_type'
+          render={({ field }) => (
+            <FormItem
+              className='col-span-3 md:col-span-2 md:col-start-2'
+            >
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder='Select' />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {
+                    businesses.map((item, index) => {
+                      return <SelectItem key={index} value={item}>{item}</SelectItem>
+                    })
+                  }
+                  <SelectItem key={'other'} value='Other'>Other</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormDescription>Business Type</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {businesses.includes(form.watch('booth_type')) ? null :         <FormField
+          control={form.control}
+          name='booth_type'
+          render={({ field }) => (
+            <FormItem
+              className='col-span-3 md:col-span-2'
+            >
+              <FormControl><Input {...field} /></FormControl>
+              <FormDescription>Other category description</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        }
         {/* Message */}
         <FormField
           control={form.control}

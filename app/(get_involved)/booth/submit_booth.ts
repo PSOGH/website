@@ -10,7 +10,6 @@ export async function submitBooth(data: z.infer<typeof boothFormSchema>) {
     'contact_phone': data.contact_phone,
     'contact_email': data.contact_email,
     'booth_type': data.booth_type,
-    'payment_method': data.payment_method,
     'booth_logo_file': data.booth_logo_file,
     'booth_introduction': data.booth_introduction,
   };

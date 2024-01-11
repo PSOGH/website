@@ -18,6 +18,7 @@ export async function getBooths() {
 }
 
 export async function createBooth(booth: NewBooth) {
+  console.log('createBooth:booth', booth)
   return await db.insertInto('booth').values(booth).returningAll().executeTakeFirstOrThrow();
 }
 
