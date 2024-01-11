@@ -11,7 +11,6 @@ export async function getBooths() {
       'contact_phone',
       'contact_email',
       'booth_type',
-      'payment_method',
       'booth_logo_file',
       'booth_introduction',
     ])

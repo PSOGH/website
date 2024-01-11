@@ -18,7 +18,7 @@ export default function Vaisakhi2024({}: Props) {
         <Button asChild className='col-span-2 col-start-2 bg-emerald-600 text-gray-50 hover:bg-emerald-200 hover:text-gray-700' variant={'outline'}><Link href='/volunteer'><HeartHandshakeIcon className='mr-2' /> Get Involved</Link></Button>
         <Button asChild className='col-span-2 bg-teal-600 text-gray-50 hover:bg-teal-200 hover:text-gray-700' variant={'outline'}><Link href='/events/va_24'><TicketIcon className='mr-2' /> Tickets</Link></Button>
         <Button asChild className='col-span-2 bg-green-600 text-gray-50 hover:bg-green-200 hover:text-gray-700' variant={'outline'}><Link href='/sponsor'><DollarSignIcon className='mr-2' /> Sponsorship</Link></Button>
-        <Button asChild className='col-span-2 bg-cyan-600 text-gray-50 hover:bg-cyan-200 hover:text-gray-700' variant={'outline'}><Link href='/booths'><StoreIcon className='mr-2' /> Booth Signup</Link></Button>
+        <Button asChild className='col-span-2 bg-cyan-600 text-gray-50 hover:bg-cyan-200 hover:text-gray-700' variant={'outline'}><Link href='/booth'><StoreIcon className='mr-2' /> Booth Signup</Link></Button>
       </div>
     </CardHeader>
     <CardContent>
@@ -32,7 +32,7 @@ export default function Vaisakhi2024({}: Props) {
         <Button asChild className='col-span-2 col-start-2 bg-emerald-600 text-gray-50 hover:bg-emerald-200 hover:text-gray-700' variant={'outline'}><Link href='/volunteer'><HeartHandshakeIcon className='mr-2' /> Get Involved</Link></Button>
         <Button asChild className='col-span-2 bg-teal-600 text-gray-50 hover:bg-teal-200 hover:text-gray-700' variant={'outline'}><Link href='/events/va_24'><TicketIcon className='mr-2' /> Tickets</Link></Button>
         <Button asChild className='col-span-2 bg-green-600 text-gray-50 hover:bg-green-200 hover:text-gray-700' variant={'outline'}><Link href='/sponsor'><DollarSignIcon className='mr-2' /> Sponsorship</Link></Button>
-        <Button asChild className='col-span-2 bg-cyan-600 text-gray-50 hover:bg-cyan-200 hover:text-gray-700' variant={'outline'}><Link href='/booths'><StoreIcon className='mr-2' /> Booth Signup</Link></Button>
+        <Button asChild className='col-span-2 bg-cyan-600 text-gray-50 hover:bg-cyan-200 hover:text-gray-700' variant={'outline'}><Link href='/booth'><StoreIcon className='mr-2' /> Booth Signup</Link></Button>
       </div>
     </CardFooter>
   </Card>
