@@ -90,7 +90,7 @@ function SponsorFormElementComponent({}: Props) {
             <FormItem
               className='col-span-6 md:col-span-4 md:col-start-2'
             >
-              <FormLabel>Sponsorship Level</FormLabel>
+              <FormLabel className=''>Sponsorship Level</FormLabel>
               <FormControl>
                 <RadioGroup
                   onValueChange={field.onChange}
@@ -103,7 +103,7 @@ function SponsorFormElementComponent({}: Props) {
                         value={key}
                         id={key}
                       />
-                      <Label htmlFor={key}>{value}</Label>
+                      <Label htmlFor={key} className=''>{value}</Label>
                     </div>
                   ))}
                 </RadioGroup>

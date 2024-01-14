@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    instrumentationHook: true
+  },
   async redirects() {
     return [
       {
@@ -20,6 +23,11 @@ const nextConfig = {
       {
         source: '/volunteers',
         destination: '/volunteer',
+        permanent: true,
+      },
+      {
+        source: '/event',
+        destination: '/events',
         permanent: true,
       },
     ]

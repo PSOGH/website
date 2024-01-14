@@ -10,8 +10,8 @@ type Props = {
 
 function RowComponent({ value, checks }: Props) {
   return <tr className="m-0 border-t p-0 even:bg-muted">
-    <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right" colSpan={3}>
-      {value}
+    <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right text-base" colSpan={4}>
+      {value == "VIP Box seating option available" ? <span>VIP Box seating <span className='underline-offset-2 underline'>option</span> available <span className='text-xs'>*Limited availability</span></span> : value}
     </td>
     {
       checks.map((check, index) => {

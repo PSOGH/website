@@ -18,16 +18,19 @@ export default async function SponsorPage({}: Props) {
     <div className="my-6 w-full overflow-y-auto">
       <table className="w-full table-fixed">
         <thead>
-          <TitleRowComponent item_title="Sponsorship Benefit" sponsor_packages={['Grand Sponsor', 'Platinum Sponsor', 'Diamond Sponsor', 'Gold Sponsor', 'Silver Sponsor', 'Bronze Sponsor']} />
+          <TitleRowComponent item_title="Sponsorship Incentives" sponsor_packages={['Grand Sponsor', 'Platinum Sponsor', 'Diamond Sponsor', 'Gold Sponsor', 'Silver Sponsor', 'Bronze Sponsor']} />
         </thead>
         <tbody>
-          <RowComponent value="Introduction of YOU as a Brand at all media platforms" checks={['yes', 'yes', 'yes', 'yes', 'yes', 'no']} />
-          <RowComponent value="Award & Sponsor Recognition" checks={['yes:by Chief Official Host', 'yes:by Chief Official Host', 'yes:by Chief Official Host', 'yes', 'yes', 'no']} />
-          <RowComponent value="Seating for you and your guests" checks={['yes:16 VIP seats (or 2 boxes)', 'yes:8 VIP seats (or 1 box)', 'yes:5 VIP seats', 'yes:4 VIP seats', 'yes:2 VIP seats', 'yes:2 Premium seats']} />
+          <RowComponent value="" checks={['$ 10,000', '$ 5,000', '$ 2,500', '$ 1,500', '$ 1,000', '$ 500']} />
+          <RowComponent value="Introducing YOU as a Brand at all media platforms" checks={['yes', 'yes', 'yes', 'yes', 'yes', 'no']} />
+          <RowComponent value="Award & Sponsor Recognition by Chief Official Host" checks={['yes', 'yes', 'yes', 'no', 'no', 'no']} />
+          <RowComponent value="Award & Sponsor Recognition" checks={['yes', 'yes', 'yes', 'yes', 'yes', 'no']} />
+          <RowComponent value="Tickets included" checks={['yes:16 VIP', 'yes:8 VIP', 'yes:5 VIP', 'yes:4 VIP', 'yes:2 VIP', 'yes:2 Premium']} />
+          <RowComponent value="VIP Box seating option available" checks={['yes', 'yes', 'no', 'no', 'no', 'no']} />
           <RowComponent value="Highlight spot to display business promotional material" checks={['yes', 'yes', 'yes', 'yes', 'yes', 'no']} />
           <RowComponent value="Logo & Brand presence on website and all social media platform" checks={['yes', 'yes', 'yes', 'yes', 'yes', 'no']} />
-          <RowComponent value="Complimentary food galore" checks={['yes:35 food coupons', 'yes:18 food coupons', 'yes:10 food coupons', 'yes:10 food coupons', 'yes:4 food coupons', 'yes:2 food coupons']} />
-          <RowComponent value="Speaking opportunity during the program" checks={['yes', 'yes', 'no', 'no', 'no', 'no']} />
+          <RowComponent value="Complimentary food galore" checks={['yes:35 food coupons', 'yes:18 food coupons', 'yes:12 food coupons', 'yes:8 food coupons', 'yes:4 food coupons', 'yes:2 food coupons']} />
+          <RowComponent value="Opportunity to present your brand during the program" checks={['yes:5 min', 'yes:3 min', 'no', 'no', 'no', 'no']} />
           <RowComponent value="Recognition as host committee sponsor" checks={['yes', 'yes', 'no', 'no', 'no', 'no']} />
           <RowComponent value="Recognition in digital print media" checks={['yes', 'yes', 'yes', 'yes', 'yes', 'no']} />
           <RowComponent value="Recognition in e-blast" checks={['yes', 'yes', 'yes', 'yes', 'yes', 'no']} />
@@ -35,10 +38,17 @@ export default async function SponsorPage({}: Props) {
           <RowComponent value="Recognition in event program" checks={['yes', 'yes', 'yes', 'yes', 'yes', 'no']} />
           <RowComponent value="Verbal recognition" checks={['yes', 'yes', 'yes', 'yes', 'yes', 'yes']} />
           <RowComponent value="Color advertisement in the event souvenir" checks={['yes:Full page', 'yes:Full page', 'yes:1/2 page', 'yes:1/2 page', 'yes:1/4 page', 'no']} />
-          <RowComponent value="Sponsorship Amount" checks={['$ 10,000', '$ 5,000', '$ 2,500', '$ 1,500', '$ 1,000', '$ 500']} />
         </tbody>
       </table>
+      {/* <iframe src="https://drive.google.com/file/d/1dgzvSGNsSYo-a9Cu1g7TZYJovBwztwZP/preview" width="100%" height="100%" allow="autoplay" style={{minHeight: '500px'}}></iframe> */}
+      <div className="my-6 w-3/4 min-h-[480px] mx-auto">
+        <iframe src="https://drive.google.com/file/d/1zpftxp9ZO_deGf0FGxPezMOfUcQ2Z_h8/preview" width="100%" height="100%" allow="autoplay" style={{minHeight: '480px'}}></iframe>
+      </div>
+      
       <SponsorshipFormComponent event_code={'va24'} />
     </div>
   </>
 }
+
+// seemakaurbhatia@yahoo.com
+// b_gagan@outlook.com

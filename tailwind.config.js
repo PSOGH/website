@@ -16,6 +16,16 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    fontSize: {
+      sm: ['16px', '22px'],
+      base: ['18px', '26px'],
+      lg: ['22px', '30px'],
+      xl: ['26px', '34px'],
+      '2xl': ['28px', '32px'],
+      '3xl': ['30px', '34px'],
+      '4xl': ['32px', '40px'],
+      '5xl': ['34px', '42px'],
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
