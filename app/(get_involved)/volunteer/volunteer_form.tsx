@@ -52,15 +52,16 @@ export default function VolunteerFormComponent({}: Props) {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const result = await submitVolunteer(values);
-    if (!('error' in result)) {
-      toast.success('Volunteer form submitted successfully')
-      toast.success(result.message)
-      form.reset()
-    } else {
-      toast.error('Failed to submit volunteer form')
-      toast.error(result.message)
+    if(result) {
+      if (!('error' in result)) {
+        toast.success('Volunteer form submitted successfully')
+        toast.success(result['message'])
+        form.reset()
+      } else {
+        toast.error('Failed to submit volunteer form')
+        toast.error(result.message)
+      }
     }
-  
   }
 
   return <Form {...form}>

@@ -1,0 +1,2 @@
+ALTER TABLE "tblEntityRoles" ADD CONSTRAINT "tblEntityRoles_entityRoleName_unique" UNIQUE("entityRoleName");--> statement-breakpoint
+ALTER TABLE "tblEntityTypes" ADD CONSTRAINT "tblEntityTypes_entityTypeName_unique" UNIQUE("entityTypeName");

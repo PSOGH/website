@@ -1,21 +1,21 @@
 import React from 'react'
 import SponsorDetailsComponent from './sponsor_detail'
-import { Sponsor } from '@/lib/models/sponsors'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+import { SponsorFull } from '@/lib/drizzle/models/sponsor'
+import { Badge } from '@/components/ui/badge'
 
 type Props = {
-  sponsors: Sponsor[]
+  sponsors: any[],
+  paymentMethods: {key: number, value: string}[]
 }
 
-function SponsorTableComponent({
-  sponsors
-}: Props) {
-  const grand_sponsors = sponsors.filter((sponsor) => sponsor.sponsorship_level_code === 'va24_grand')
-  const platinum_sponsors = sponsors.filter((sponsor) => sponsor.sponsorship_level_code === 'va24_platinum')
-  const diamond_sponsors = sponsors.filter((sponsor) => sponsor.sponsorship_level_code === 'va24_diamond')
-  const gold_sponsors = sponsors.filter((sponsor) => sponsor.sponsorship_level_code === 'va24_gold')
-  const silver_sponsors = sponsors.filter((sponsor) => sponsor.sponsorship_level_code === 'va24_silver')
-  const bronze_sponsors = sponsors.filter((sponsor) => sponsor.sponsorship_level_code === 'va24_bronze')
+function SponsorTableComponent({sponsors, paymentMethods}: Props) {
+  const grand_sponsors = sponsors.filter((sponsor) => sponsor.sponsorshipLevel?.code === 'va24_grand')
+  const platinum_sponsors = sponsors.filter((sponsor) => sponsor.sponsorshipLevel?.code === 'va24_platinum')
+  const diamond_sponsors = sponsors.filter((sponsor) => sponsor.sponsorshipLevel?.code === 'va24_diamond')
+  const gold_sponsors = sponsors.filter((sponsor) => sponsor.sponsorshipLevel?.code === 'va24_gold')
+  const silver_sponsors = sponsors.filter((sponsor) => sponsor.sponsorshipLevel?.code === 'va24_silver')
+  const bronze_sponsors = sponsors.filter((sponsor) => sponsor.sponsorshipLevel?.code === 'va24_bronze')
   const sponsor_pairs = [
     {sponsorship_level: 'All Sponsors Vaisakhi 2024', sponsors: [...grand_sponsors, ...platinum_sponsors, ...diamond_sponsors, ...gold_sponsors, ...silver_sponsors, ...bronze_sponsors]},
     {sponsorship_level: 'Grand Sponsor', sponsors: grand_sponsors},
@@ -32,10 +32,14 @@ function SponsorTableComponent({
     <Accordion type="single" collapsible>
       {sponsor_pairs.map((sponsor_pair) => {
         return <AccordionItem key={sponsor_pair.sponsorship_level} value={sponsor_pair.sponsorship_level}>
-          <AccordionTrigger>{sponsor_pair.sponsorship_level}</AccordionTrigger>
+          <AccordionTrigger>{sponsor_pair.sponsorship_level} <Badge variant='secondary' className='mr-4 ml-auto'>{sponsor_pair.sponsors.length}</Badge></AccordionTrigger>
           <AccordionContent>
             {sponsor_pair.sponsors.map((sponsor) => {
-              return <SponsorDetailsComponent key={sponsor.id} sponsor={sponsor} />
+              return <SponsorDetailsComponent
+                key={sponsor.id}
+                sponsor={sponsor}
+                paymentMethods={paymentMethods}
+              />
             })}
           </AccordionContent>
         </AccordionItem>
