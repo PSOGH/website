@@ -4,7 +4,7 @@ import {
   Migrator,
   FileMigrationProvider,
 } from 'kysely'
-import { db } from './db'
+import { db } from './drizzle/db'
 
 export async function migrateToLatest() {
   const migrator = new Migrator({

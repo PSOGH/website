@@ -1,0 +1,1 @@
+ALTER TABLE "tblRecievableAccounts" DROP COLUMN IF EXISTS "amount";

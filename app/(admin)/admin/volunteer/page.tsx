@@ -1,5 +1,5 @@
 import React from 'react'
-import { getTeams } from '@/lib/controllers/volunteers'
+import { getTeams } from '@/lib/controllers2/volunteers'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 type Props = {}

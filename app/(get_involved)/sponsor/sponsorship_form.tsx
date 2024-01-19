@@ -1,12 +1,15 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import React from 'react'
 import SponsorFormElementComponent from './form_component'
+import { getSponsorshipLevels } from '@/lib/drizzle/controllers/sponsor'
 
 type Props = {
   event_code: string,
+  sponsor_types: {key: number, value: string}[],
+  sponsorshipLevels: {key: number, value: string}[]
 }
 
-function SponsorshipFormComponent({ event_code }: Props) {
+async function SponsorshipFormComponent({ event_code, sponsor_types, sponsorshipLevels }: Props) {
   return <Card className='w-full md:w-5/6 mt-6 mx-auto'>
     <CardHeader>
       <CardTitle>Sponsorship Pledge Form</CardTitle>
@@ -19,7 +22,7 @@ function SponsorshipFormComponent({ event_code }: Props) {
       </p>
     </CardHeader>
     <CardContent>
-      <SponsorFormElementComponent />
+      <SponsorFormElementComponent sponsor_types={sponsor_types} sponsorshipLevels={sponsorshipLevels} />
     </CardContent>
   </Card>
 }

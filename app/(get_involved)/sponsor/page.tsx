@@ -2,12 +2,23 @@ import React from 'react'
 import RowComponent from './Row'
 import TitleRowComponent from './titleRow'
 import SponsorshipFormComponent from './sponsorship_form'
+import { getEntityTypes } from '@/lib/drizzle/controllers/entity'
+import { getSponsorshipLevels } from '@/lib/drizzle/controllers/sponsor'
 
 type Props = {}
 const eventCode: string = 'va24'
 
 export default async function SponsorPage({}: Props) {
-  // return <iframe src="https://form.jotform.com/houstonpunjabi/PSGHsponsorship-pledge-form" width="100%" height="100%" className="min-h-[800px] h-max"></iframe>
+  const sponsorshipLevels: {key: number, value: string}[] = (
+    await getSponsorshipLevels()
+    ).map(
+      (sponsorLevel) => {
+        return { key: sponsorLevel.id || 0, value: sponsorLevel.name || "" }
+      }
+      );
+
+  const sponsor_types_raw = await getEntityTypes()
+  const sponsor_types: {key: number, value: string}[] = sponsor_types_raw.map((entityType) => {return {key: entityType.id, value: entityType.entityTypeName || ''}})
   return <>
     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
       Sponsorship for Vaisakhi Mela 2024
@@ -45,7 +56,7 @@ export default async function SponsorPage({}: Props) {
         <iframe src="https://drive.google.com/file/d/1zpftxp9ZO_deGf0FGxPezMOfUcQ2Z_h8/preview" width="100%" height="100%" allow="autoplay" style={{minHeight: '480px'}}></iframe>
       </div>
       
-      <SponsorshipFormComponent event_code={'va24'} />
+      <SponsorshipFormComponent event_code={'va24'} sponsor_types={sponsor_types} sponsorshipLevels={sponsorshipLevels} />
     </div>
   </>
 }

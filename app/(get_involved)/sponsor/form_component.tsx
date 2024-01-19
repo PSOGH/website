@@ -16,18 +16,14 @@ import { Textarea } from '@/components/ui/textarea';
 
 import { sponsorFormSchema } from './form_schema';
 import { submitSponsor } from './submit_sponsor';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
-const sponsorshipLevels: {key: string, value: string}[] = [
-  {key: 'va24_grand', value: 'Grand Sponsor ($10,000)'},
-  {key: 'va24_platinum', value: 'Platinum Sponsor ($5,000)'},
-  {key: 'va24_diamond', value: 'Diamond Sponsor ($2,500)'},
-  {key: 'va24_gold', value: 'Gold Sponsor ($1,500)'},
-  {key: 'va24_silver', value: 'Silver Sponsor ($1,000)'},
-  {key: 'va24_bronze', value: 'Bronze Sponsor ($500)'},
-]
-type Props = {}
+type Props = {
+  sponsor_types: {key: number, value: string}[]
+  sponsorshipLevels: {key: number, value: string}[]
+}
 
-function SponsorFormElementComponent({}: Props) {
+function SponsorFormElementComponent({ sponsor_types, sponsorshipLevels }: Props) {
   const [file, setFile] = useState<File>();
   const form = useForm<z.infer<typeof sponsorFormSchema>>({
     resolver: zodResolver(sponsorFormSchema),
@@ -40,13 +36,17 @@ function SponsorFormElementComponent({}: Props) {
     console.log('values', values)
 
     const result = await submitSponsor(values);
-    if(!('error' in result)) {
+    if(result && !('error' in result)) {
       toast.success('Sponsorship pledge submitted successfully')
       toast.success(result.message)
       form.reset();
     } else {
       toast.error('Failed to submit sponsorship pledge')
-      toast.error(result.message)
+      if(result) {
+        toast.error(result.message)
+      } else {
+        toast.error('Unknown error')
+      }
     }
   }
 
@@ -94,16 +94,16 @@ function SponsorFormElementComponent({}: Props) {
               <FormControl>
                 <RadioGroup
                   onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  defaultValue={`${field.value}`}
                 >
                   {sponsorshipLevels.map(({key, value}) => (
                     <div className='flex items-center space-x-2' key={`radio_${key}`}>
                       <RadioGroupItem
                         key={key}
-                        value={key}
-                        id={key}
+                        value={`${key}`}
+                        id={`${key}`}
                       />
-                      <Label htmlFor={key} className=''>{value}</Label>
+                      <Label htmlFor={`${key}`} className=''>{value}</Label>
                     </div>
                   ))}
                 </RadioGroup>
@@ -120,11 +120,38 @@ function SponsorFormElementComponent({}: Props) {
           name='sponsor_name'
           render={({ field }) => (
             <FormItem
-              className='col-span-6 md:col-span-4 md:col-start-2'
+              className='col-span-6 md:col-span-3 md:col-start-2'
             >
-              <FormLabel>Sponsor Name</FormLabel>
+              <FormLabel>Sponsor Title</FormLabel>
               <FormControl><Input {...field} /></FormControl>
               <FormDescription>This is the name that will be used in all communication and broadcast. You can enter your company name in case of corporate sponsorship.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* Sponsor Type */}
+        <FormField
+          control={form.control}
+          name={`sponsor_type`}
+          render={({ field }) => (
+            <FormItem
+            className='col-span-1'
+            >
+              <Select onValueChange={field.onChange}>
+                <Label>Sponsor Type</Label>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder='Select' />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {sponsor_types.map(({key, value}) => (
+                    <SelectItem key={key} value={key.toString()}>{value}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {/* <FormDescription>Sponsor Type</FormDescription> */}
               <FormMessage />
             </FormItem>
           )}

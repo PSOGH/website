@@ -1,0 +1,1 @@
+ALTER TABLE "tblPaymentMethods" ALTER COLUMN "paymentMethodName" SET DATA TYPE text;

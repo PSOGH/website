@@ -1,4 +1,4 @@
-import { getBooths } from '@/lib/controllers/booths'
+import { getBooths } from '@/lib/controllers2/booths'
 import { Booth } from '@/lib/models/booths'
 import React from 'react'
 import BoothTableComponent from './booth_table'

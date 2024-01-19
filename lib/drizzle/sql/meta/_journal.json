@@ -1,0 +1,76 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1705292932512,
+      "tag": "0000_equal_jetstream",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1705293423852,
+      "tag": "0001_cuddly_typhoid_mary",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1705295020132,
+      "tag": "0002_handy_doomsday",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1705346866511,
+      "tag": "0003_quiet_surge",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1705416334675,
+      "tag": "0004_fearless_sasquatch",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1705420242217,
+      "tag": "0005_flat_machine_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1705546371389,
+      "tag": "0006_remarkable_dagger",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1705589600842,
+      "tag": "0007_curvy_skreet",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1705630106225,
+      "tag": "0008_curious_vanisher",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1705634904107,
+      "tag": "0009_mean_prima",
+      "breakpoints": true
+    }
+  ]
+}

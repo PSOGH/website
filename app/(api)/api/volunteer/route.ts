@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import { createParticipant, createTeam, getTeams } from '@/lib/controllers/volunteers';
+import { createParticipant, createTeam, getTeams } from '@/lib/controllers2/volunteers';
 
 export async function GET(request: NextRequest) {
   return NextResponse.json({

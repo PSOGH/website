@@ -1,13 +1,17 @@
 import React from 'react'
-import { getSponsors } from '@/lib/controllers/sponsors'
-import { Sponsor } from '@/lib/models/sponsors'
+
+import { getSponsorsFull } from '@/lib/drizzle/controllers/sponsor';
+import { SponsorFull } from '@/lib/drizzle/models/sponsor'
+
 import SponsorTableComponent from './sponsor_table'
+import { getPaymentMethods } from '@/lib/drizzle/controllers/payment';
 
 type Props = {}
 
 async function SponsorListPage({}: Props) {
-  const sponsors: Sponsor[] = await getSponsors()
-  return <SponsorTableComponent sponsors={sponsors} />
+  const paymentMethods = (await getPaymentMethods()).map((paymentMethod) => ({key: paymentMethod.id, value: paymentMethod.paymentMethodName || ""}));
+  const sponsors: SponsorFull[] | null = await getSponsorsFull();
+  return <SponsorTableComponent sponsors={sponsors === null ? [] : sponsors} paymentMethods={paymentMethods} />
 }
 
 export default SponsorListPage
