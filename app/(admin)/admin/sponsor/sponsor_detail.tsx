@@ -22,9 +22,35 @@ function SponsorDetailsComponent({sponsor, paymentMethods}: Props) {
     ? sponsor.sponsor?.representedBy[0].representative
     : sponsor.sponsor
   );
+
+  if(sponsor.sponsor) {
+    if(sponsor.sponsor.entityType) {
+      if(typeof sponsor.sponsor.entityType === 'number') {
+        var entityType: string = sponsor.sponsor.entityType.toString()
+      } else {
+        if((typeof sponsor.sponsor.entityType) == (typeof {id: 0, entityTypeName: ""})) {
+          var entityType: string = sponsor.sponsor['entityType']['entityTypeName'] || ""
+        } else {
+          var entityType: string = JSON.stringify(sponsor.sponsor.entityType)
+        }
+      }
+    } else {
+      var entityType = ""
+    }
+  }  else {
+    var entityType = ""
+  }
+
   return <Card>
     <CardHeader>
-      <CardTitle className='flex flex-row mb-1'><div className='mr-4 text-white text-center bg-slate-500 min-w-[100px] max-w-[150px] py-1 rounded-md'>{sponsor.sponsor?.entityType && sponsor.sponsor?.entityType?.entityTypeName}</div><div className='py-1'>{sponsor.name}</div></CardTitle>
+      <CardTitle className='flex flex-row mb-1'>
+        <div className='mr-4 text-white text-center bg-slate-500 min-w-[100px] max-w-[150px] py-1 rounded-md'>
+          {entityType}
+        </div>
+        <div className='py-1'>
+          {sponsor.name}
+        </div>
+      </CardTitle>
       <CardDescription>
         <Badge variant='outline'>{sponsor.sponsorshipLevel?.name}</Badge>
       </CardDescription>

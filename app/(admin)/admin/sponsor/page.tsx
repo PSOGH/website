@@ -10,7 +10,7 @@ type Props = {}
 
 async function SponsorListPage({}: Props) {
   const paymentMethods = (await getPaymentMethods()).map((paymentMethod) => ({key: paymentMethod.id, value: paymentMethod.paymentMethodName || ""}));
-  const sponsors: SponsorFull[] | null = await getSponsorsFull();
+  const sponsors = await getSponsorsFull();
   return <SponsorTableComponent sponsors={sponsors === null ? [] : sponsors} paymentMethods={paymentMethods} />
 }
 

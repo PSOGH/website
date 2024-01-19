@@ -1,11 +1,11 @@
 import React from 'react'
-import { getTeams } from '@/lib/controllers2/volunteers'
+// import { getTeams } from '@/lib/controllers2/volunteers'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 type Props = {}
 
 async function VolunteerListPage({}: Props) {
-  const teams = await getTeams()
+  // const teams = await getTeams()
   return <Card className='w-5/6'>
     <CardHeader>
       <CardTitle>

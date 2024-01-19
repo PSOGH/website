@@ -176,8 +176,8 @@ export type EntityRepresentativeFull = EntityRepresentative & {
 }
 
 export type EntityFull = Entity & {
-  entityType: EntityType | null,
-  entityRole: EntityRole | null,
+  entityType: EntityType | null | number,
+  entityRole: EntityRole | null | number,
   emails: EntityEmail[] | null,
   phoneNumbers: EntityPhoneNumber[] | null,
   websites: EntityWebsite[] | null,

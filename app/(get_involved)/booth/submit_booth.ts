@@ -1,7 +1,7 @@
 'use server'
 import * as z from 'zod'
 import { boothFormSchema } from './form_schema'
-import { createBooth } from '@/lib/controllers2/booths';
+// import { createBooth } from '@/lib/controllers2/booths';
 
 export async function submitBooth(data: z.infer<typeof boothFormSchema>) {
   const boothData = {
@@ -14,10 +14,11 @@ export async function submitBooth(data: z.infer<typeof boothFormSchema>) {
     'booth_introduction': data.booth_introduction,
   };
   try {
-    const booth = await createBooth(boothData);
+    // const booth = await createBooth(boothData);
     return {
       message: 'Thank you for your interest in having a booth at our event! We will be in touch soon.',
-      booth: booth
+      // booth: booth
+      booth: ""
     };
   } catch (error) {
     return {

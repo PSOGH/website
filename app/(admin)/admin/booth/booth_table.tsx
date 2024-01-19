@@ -1,11 +1,12 @@
-import { Booth } from '@/lib/models/booths'
+// import { Booth } from '@/lib/models/booths'
 import React from 'react'
 import BoothDetailsComponent from './booth_details'
 import { Button } from '@/components/ui/button'
 import { DownloadIcon } from 'lucide-react'
 
 type Props = {
-  booths: Booth[]
+  // booths: Booth[]
+  booths: any[]
 }
 
 function BoothTableComponent({ booths }: Props) {

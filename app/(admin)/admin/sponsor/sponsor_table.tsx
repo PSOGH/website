@@ -5,7 +5,7 @@ import { SponsorFull } from '@/lib/drizzle/models/sponsor'
 import { Badge } from '@/components/ui/badge'
 
 type Props = {
-  sponsors: SponsorFull[],
+  sponsors: any[],
   paymentMethods: {key: number, value: string}[]
 }
 

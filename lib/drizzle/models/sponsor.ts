@@ -64,6 +64,6 @@ export type SponsorFull = Sponsor & {
   recievable: RecievableAccount & {
     payment: (Payment & {
       method: PaymentMethod | null;
-    })[][];
+    })[];
   } | null;
 }

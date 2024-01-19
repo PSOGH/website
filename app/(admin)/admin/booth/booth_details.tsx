@@ -1,9 +1,10 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Booth } from '@/lib/models/booths'
+// import { Booth } from '@/lib/models/booths'
 import React from 'react'
 
 type Props = {
-  booth: Booth
+  // booth: Booth
+  booth: any
 }
 
 function BoothDetailsComponent({ booth }: Props) {

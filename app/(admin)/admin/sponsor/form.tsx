@@ -41,7 +41,7 @@ function AddPaymentForm({ recievable, paymentMethods }: Props) {
       toast.error('Failed to register sponsorship payment')
       if(result) {
         toast.error(result.message)
-        toast.error(result.error || "")
+        toast.error(JSON.stringify(result.error) || "")
       } else {
         toast.error('Unknown error')
       }
