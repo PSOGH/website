@@ -45,24 +45,24 @@ export async function submitSponsor(data: z.infer<typeof sponsorFormSchema>) {
       const emailInfo = await transporter.sendMail(mailOptions);
       console.log('emailInfo: ' + JSON.stringify(emailInfo));
 
-      const mailOptions = {
+      const mailOptions2 = {
         from: process.env.EMAIL_ID,
         to: process.env.SPONSOR_EMAIL_IDS,
         subject: 'A New Sponsorship Pledge has been recieved!',
         html: `${JSON.stringify(entity)}  ${JSON.stringify(data)}`
       };
 
-      const emailInfo = await transporter.sendMail(mailOptions);
-      console.log('emailInfo: ' + JSON.stringify(emailInfo));
+      const emailInfo2 = await transporter.sendMail(mailOptions2);
+      console.log('emailInfo2: ' + JSON.stringify(emailInfo2));
 
-      if ('error' in emailInfo) {
-        console.log(emailInfo.error);
+      if ('error' in emailInfo2) {
+        console.log(emailInfo2.error);
         return {
           'message': 'There was an error sending email about your pledge submission. Your pledge has been registered. Please PSOGH member to get your pledge email.',
-          'error': (typeof emailInfo.error == typeof 'string') ? emailInfo.error : JSON.stringify(emailInfo.error),
+          'error': (typeof emailInfo2.error == typeof 'string') ? emailInfo2.error : JSON.stringify(emailInfo2.error),
         }
       } else {
-        console.log('Thank you email sent: ' + JSON.stringify(emailInfo));
+        console.log('Thank you email sent: ' + JSON.stringify(emailInfo2));
       }
 
       return {
