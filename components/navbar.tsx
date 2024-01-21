@@ -24,10 +24,10 @@ type Props = {}
 export default function NavbarComponent({}: Props) {
   const [state, setState] = React.useState(false)
   const pathName = usePathname()
-  const useMediaQuery = (width) => {
+  const useMediaQuery = (width: number) => {
     const [targetReached, setTargetReached] = React.useState(false);
   
-    const updateTarget = React.useCallback((e) => {
+    const updateTarget = React.useCallback((e: any) => {
       if (e.matches) {
         setTargetReached(true);
       } else {
