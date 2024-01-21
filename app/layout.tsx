@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(
-        "bg-background font-[roboto] antialiased min-h-[100vw] flex flex-col",
+        "bg-background font-[roboto] antialiased min-h-[100vw] flex flex-col min-w-[896px]",
         inter.className
       )}>
         <ThemeProvider

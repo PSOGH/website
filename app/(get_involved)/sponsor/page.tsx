@@ -60,6 +60,3 @@ export default async function SponsorPage({}: Props) {
     </div>
   </>
 }
-
-// seemakaurbhatia@yahoo.com
-// b_gagan@outlook.com

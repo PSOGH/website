@@ -17,11 +17,47 @@ import {
 import ImageKit from '@/components/imagekit'
 import { ModeToggle } from '@/components/theme-button'
 import { usePathname } from 'next/navigation'
+import { MenuIcon } from 'lucide-react'
 
 type Props = {}
 
 export default function NavbarComponent({}: Props) {
+  const [state, setState] = React.useState(false)
   const pathName = usePathname()
+  const useMediaQuery = (width) => {
+    const [targetReached, setTargetReached] = React.useState(false);
+  
+    const updateTarget = React.useCallback((e) => {
+      if (e.matches) {
+        setTargetReached(true);
+      } else {
+        setTargetReached(false);
+      }
+    }, []);
+  
+    React.useEffect(() => {
+      const media = window.matchMedia(`(max-width: ${width}px)`);
+      if (media.addEventListener) {
+        media.addEventListener("change", updateTarget);
+      } else {
+        // compatibility for browser that dont have addEventListener
+        media.addListener(updateTarget);
+      }
+      // Check on mount (callback is not called until a change occurs)
+      if (media.matches) {
+        setTargetReached(true);
+      }
+      if (media.removeEventListener) {
+        return () => media.removeEventListener('change', updateTarget);
+      } else {
+        // compatibility for browser that dont have removeEventListener
+        return () => media.removeListener(updateTarget);
+      }
+    }, []);
+  
+    return targetReached;
+  };
+  const isBreakpoint = useMediaQuery(384)
   return <nav className='bg-white border-gray-200 dark:bg-gray-900 sticky top-0 z-50 min-h-[75px] shadow py-1 px-1 flex flex-col lg:flex-row justify-between'>
     <div className='flex flex-row ml-4'>
       <ImageKit
@@ -35,7 +71,7 @@ export default function NavbarComponent({}: Props) {
         Punjabi Society of Greater Houston
       </h1>
     </div>
-    <div className='flex flex-row ml-auto mr-8 mt-auto mb-1 min-w-[400px]'>
+    {isBreakpoint ? (<div className='flex flex-row ml-auto mr-8 mt-auto mb-1'>
       <NavigationMenu>
         <NavigationMenuList>
           {/* Home Menu Button */}
@@ -60,7 +96,32 @@ export default function NavbarComponent({}: Props) {
           <ModeToggle />
         </NavigationMenuList>
       </NavigationMenu>
+    </div>) : (<div><div>
+      <div className="md:hidden">
+        <button
+          className="text-gray-700 outline-none p-2 rounded-md focus:border-gray-400 focus:border"
+          onClick={() => setState(!state)}
+        >
+          <MenuIcon />
+        </button>
+      </div>
     </div>
+    <div
+      className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
+        state ? "block" : "hidden"
+      }`}
+    >
+      <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+        <li className="text-gray-600 hover:text-indigo-600">
+          <Link href='/home'>Home</Link>
+          <Link href='/about'>About</Link>
+          <Link href='/leadership'>Leadership</Link>
+          <Link href='/events'>Evenys</Link>
+          <Link href='/gallery'>Gallery</Link>
+        </li>
+      </ul>
+    </div></div>)
+    }
   </nav>
 }
 
