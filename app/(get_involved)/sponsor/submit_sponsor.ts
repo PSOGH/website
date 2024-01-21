@@ -3,6 +3,15 @@ import * as z from 'zod'
 import { sponsorFormSchema } from './form_schema'
 import { addSponsor } from '@/lib/drizzle/controllers/sponsor';
 import { addEntity } from '@/lib/drizzle/controllers/entity';
+import nodemailer from 'nodemailer';
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_ID,
+    pass: process.env.EMAIL_KEY
+  }
+});
 
 export async function submitSponsor(data: z.infer<typeof sponsorFormSchema>) {
   // Self Sponsoring
@@ -25,6 +34,36 @@ export async function submitSponsor(data: z.infer<typeof sponsorFormSchema>) {
         }],
         []
       )
+
+      const mailOptions = {
+        from: process.env.EMAIL_ID,
+        to: data.contact_email,
+        subject: 'Thank you for sponsoring PSOGH!',
+        html: `<p>Thank you for sponsoring PSOGH! We will be in touch soon.</p>`
+      };
+
+      const emailInfo = await transporter.sendMail(mailOptions);
+      console.log('emailInfo: ' + JSON.stringify(emailInfo));
+
+      const mailOptions = {
+        from: process.env.EMAIL_ID,
+        to: process.env.SPONSOR_EMAIL_IDS,
+        subject: 'A New Sponsorship Pledge has been recieved!',
+        html: `${JSON.stringify(entity)}  ${JSON.stringify(data)}`
+      };
+
+      const emailInfo = await transporter.sendMail(mailOptions);
+      console.log('emailInfo: ' + JSON.stringify(emailInfo));
+
+      if ('error' in emailInfo) {
+        console.log(emailInfo.error);
+        return {
+          'message': 'There was an error sending email about your pledge submission. Your pledge has been registered. Please PSOGH member to get your pledge email.',
+          'error': (typeof emailInfo.error == typeof 'string') ? emailInfo.error : JSON.stringify(emailInfo.error),
+        }
+      } else {
+        console.log('Thank you email sent: ' + JSON.stringify(emailInfo));
+      }
 
       return {
         message: 'Thank you for your interest in sponsoring our event! We will be in touch soon.',
@@ -86,4 +125,10 @@ export async function submitSponsor(data: z.infer<typeof sponsorFormSchema>) {
       }
     }
   }
+}
+
+
+function constructEmail(data: z.infer<typeof sponsorFormSchema>) {
+  var emailBody = ""
+  return emailBody
 }
