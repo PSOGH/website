@@ -27,6 +27,10 @@ export async function getSponsors() {
   await db.select().from(schema.sponsors).where(eq(schema.sponsorshipLevels.event, 2));
 }
 
+export async function getSponsor(SponsorID: number) {
+  await db.select().from(schema.sponsors).where(eq(schema.sponsors.id, SponsorID));
+}
+
 export async function getSponsorsFull() {
   return await db.query.sponsors.findMany({
     with: {

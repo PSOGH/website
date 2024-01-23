@@ -35,6 +35,14 @@ export async function submitSponsor(data: z.infer<typeof sponsorFormSchema>) {
         []
       )
 
+      const sponsor = await addSponsor({
+        name: data.sponsor_name,
+        introduction: data.sponsor_introduction,
+        sponsor: entity,
+        sponsorshipLevel: data.sponsorship_level_code,
+        requestBooth: data.sponsor_booth,
+      });
+
       const mailOptions = {
         from: process.env.EMAIL_ID,
         to: data.contact_email,
@@ -44,12 +52,14 @@ export async function submitSponsor(data: z.infer<typeof sponsorFormSchema>) {
 
       const emailInfo = await transporter.sendMail(mailOptions);
       console.log('emailInfo: ' + JSON.stringify(emailInfo));
+      data['sponsor_logo_file'] = ''
 
       const mailOptions2 = {
         from: process.env.EMAIL_ID,
         to: process.env.SPONSOR_EMAIL_IDS,
+        // to: 's.gagan.preet@gmail.com',
         subject: 'A New Sponsorship Pledge has been recieved!',
-        html: `${JSON.stringify(entity)}  ${JSON.stringify(data)}`
+        html: `Sponsor ID: ${JSON.stringify(entity)}  Details: ${JSON.stringify(data, undefined, 2)}`
       };
 
       const emailInfo2 = await transporter.sendMail(mailOptions2);
@@ -113,6 +123,39 @@ export async function submitSponsor(data: z.infer<typeof sponsorFormSchema>) {
         sponsorshipLevel: data.sponsorship_level_code,
         requestBooth: data.sponsor_booth,
       });
+
+      
+      const mailOptions = {
+        from: process.env.EMAIL_ID,
+        to: data.contact_email,
+        subject: 'Thank you for sponsoring PSOGH!',
+        html: `<p>Thank you for sponsoring PSOGH! We will be in touch soon.</p>`
+      };
+
+      const emailInfo = await transporter.sendMail(mailOptions);
+      console.log('emailInfo: ' + JSON.stringify(emailInfo));
+      data['sponsor_logo_file'] = ''
+
+      const mailOptions2 = {
+        from: process.env.EMAIL_ID,
+        to: process.env.SPONSOR_EMAIL_IDS,
+        // to: 's.gagan.preet@gmail.com',
+        subject: 'A New Sponsorship Pledge has been recieved!',
+        html: `Sponsor ID: ${JSON.stringify(entity)} Details: ${JSON.stringify(data)}`
+      };
+
+      const emailInfo2 = await transporter.sendMail(mailOptions2);
+      console.log('emailInfo2: ' + JSON.stringify(emailInfo2));
+
+      if ('error' in emailInfo2) {
+        console.log(emailInfo2.error);
+        return {
+          'message': 'There was an error sending email about your pledge submission. Your pledge has been registered. Please PSOGH member to get your pledge email.',
+          'error': (typeof emailInfo2.error == typeof 'string') ? emailInfo2.error : JSON.stringify(emailInfo2.error),
+        }
+      } else {
+        console.log('Thank you email sent: ' + JSON.stringify(emailInfo2));
+      }
 
       return {
         message: 'Thank you for your interest in sponsoring our event! We will be in touch soon.',

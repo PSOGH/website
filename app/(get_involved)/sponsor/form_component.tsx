@@ -136,7 +136,7 @@ function SponsorFormElementComponent({ sponsor_types, sponsorshipLevels }: Props
           name={`sponsor_type`}
           render={({ field }) => (
             <FormItem
-            className='col-span-1'
+            className='col-span-6 md:col-span-1'
             >
               <Select onValueChange={field.onChange}>
                 <Label>Sponsor Type</Label>
