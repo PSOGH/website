@@ -32,7 +32,7 @@ export default function RootLayout({
       )}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
@@ -42,7 +42,7 @@ export default function RootLayout({
           </div>
           <FooterComponent />
           <CookieDrawerSetupComponent />
-          <Toaster />
+          <Toaster position='bottom-left' />
         </ThemeProvider>
       </body>
     </html>

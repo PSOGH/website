@@ -27,7 +27,7 @@ export default async function SponsorPage({}: Props) {
       Sponsorship Packages
     </h3>
     <div className="my-6 w-full overflow-y-auto">
-      <table className="w-full table-fixed min-w-[800px]">
+      <table className="w-full table-fixed min-w-[1150px]">
         <thead>
           <TitleRowComponent item_title="Sponsorship Incentives" sponsor_packages={['Grand Sponsor', 'Platinum Sponsor', 'Diamond Sponsor', 'Gold Sponsor', 'Silver Sponsor', 'Bronze Sponsor']} />
         </thead>

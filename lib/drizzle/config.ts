@@ -4,10 +4,8 @@ import * as dotenv from "dotenv";
 dotenv.config({path: './.env.development.local'});
 dotenv.config({path: './.env.stage.local'});
 dotenv.config({path: './.env.production.local'});
-console.log(process.env.POSTGRES_URL);
 
 const connectionString = `${process.env.POSTGRES_URL || ""}?sslmode=require`
-console.log(connectionString);
 
 export default {
   schema: "./lib/drizzle/models/*",

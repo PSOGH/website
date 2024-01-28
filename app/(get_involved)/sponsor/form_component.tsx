@@ -1,4 +1,5 @@
 'use client'
+import { LoaderIcon } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner';
@@ -6,17 +7,18 @@ import { z } from 'zod'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 
 import { sponsorFormSchema } from './form_schema';
 import { submitSponsor } from './submit_sponsor';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { cn } from '@/lib/utils';
 
 type Props = {
   sponsor_types: {key: number, value: string}[]
@@ -25,14 +27,17 @@ type Props = {
 
 function SponsorFormElementComponent({ sponsor_types, sponsorshipLevels }: Props) {
   const [file, setFile] = useState<File>();
+  const [state, setState] = useState<string>('pending');
   const form = useForm<z.infer<typeof sponsorFormSchema>>({
     resolver: zodResolver(sponsorFormSchema),
     defaultValues: {
       sponsor_booth: false,
+      sponsor_introduction: ''
     }
   })
 
   async function onSubmit(values: z.infer<typeof sponsorFormSchema>) {
+    setState('loading')
     console.log('values', values)
 
     const result = await submitSponsor(values);
@@ -40,6 +45,7 @@ function SponsorFormElementComponent({ sponsor_types, sponsorshipLevels }: Props
       toast.success('Sponsorship pledge submitted successfully')
       toast.success(result.message)
       form.reset();
+      setState('complete')
     } else {
       toast.error('Failed to submit sponsorship pledge')
       if(result) {
@@ -47,6 +53,7 @@ function SponsorFormElementComponent({ sponsor_types, sponsorshipLevels }: Props
       } else {
         toast.error('Unknown error')
       }
+      setState('pending')
     }
   }
 
@@ -60,7 +67,7 @@ function SponsorFormElementComponent({ sponsor_types, sponsorshipLevels }: Props
       () => {
         // convert image file to base64 string
         const base64value = reader.result as string;
-        console.log('base64value', base64value)
+        // console.log('base64value', base64value)
         form.setValue('sponsor_logo_file', base64value)
       },
       false,
@@ -69,9 +76,20 @@ function SponsorFormElementComponent({ sponsor_types, sponsorshipLevels }: Props
   }, [file])
 
   function onLogoFileChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setFile(event.target.files?.[0])
-    if (event.target.files?.length) {
-      form.setValue('sponsor_logo_filename', event.target.value)
+    console.log(event.target.files);
+    var files = event.target.files || false;
+    if (files){
+      var file = files[0];
+      console.log('File Size:', file.size, file.size/1024, file.size/1024/1024)
+      if(file.size < 10*1024*1024) {
+        setFile(file)
+        form.setValue('sponsor_logo_filename', event.target.value)
+      } else {
+        toast.error('File too large. Please upload a file of size less than 10 MB.')
+        console.log('File too large. Please upload a smaller file. Emptying')
+        form.setValue('sponsor_logo_file', '')
+        form.setValue('sponsor_logo_filename', '')
+      }
     } else {
       form.setValue('sponsor_logo_file', '')
       form.setValue('sponsor_logo_filename', '')
@@ -79,7 +97,12 @@ function SponsorFormElementComponent({ sponsor_types, sponsorshipLevels }: Props
   }
 
   return <Form {...form}>
-    <form onSubmit={form.handleSubmit(onSubmit, console.log)} className='space-y-8'>
+    <form onSubmit={form.handleSubmit(onSubmit, console.log)} className={cn(
+      'space-y-8',
+      state == 'pending' ? 'visible' : '',
+      state == 'loading' ? 'hidden' : '',
+      state == 'complete' ? 'hidden' : ''
+    )}>
       <div className='grid grid-cols-6 gap-4'>
 
         {/* Sponsorship Level - Radio Group */}
@@ -103,7 +126,20 @@ function SponsorFormElementComponent({ sponsor_types, sponsorshipLevels }: Props
                         value={`${key}`}
                         id={`${key}`}
                       />
-                      <Label htmlFor={`${key}`} className=''>{value}</Label>
+                      <Label htmlFor={`${key}`} className='flex flex-row'>
+                        <div className='mr-[1px]'>[ $</div>
+                        <div className='text-right mr-1 w-[60px]'>{
+                          ({
+                            "1": 10000,
+                            "2": 5000,
+                            "3": 2500,
+                            "4": 1500,
+                            "5": 1000,
+                            "6": 500
+                          }[key] || 0).toFixed(0).replace(/\d{1,3}(?=(\d{3})+)/g, '$&,')
+                        } ]</div>
+                        <div className="">- {value}</div>
+                      </Label>
                     </div>
                   ))}
                 </RadioGroup>
@@ -337,9 +373,21 @@ function SponsorFormElementComponent({ sponsor_types, sponsorshipLevels }: Props
       </div>
       <div className='flex justify-end'>
         <Button variant='outline' onClick={() => form.reset()} className='mx-2'>Reset</Button>
-        <Button type='submit'>Submit</Button>
+        <Button type='submit' className={state=='pending'?'visible':'collapsed'}>
+          Submit
+        </Button>
+        {/* <Button className={state=='loading'?'visible':'collapsed'}>
+          <LoaderIcon className='mr-2 h-4 w-4 animate-spin' />
+          Please wait
+        </Button> */}
       </div>
     </form>
+    <div className={cn(
+      state == 'complete' ? 'visible' : 'hidden'
+    )}>Form submitted successfully!</div>
+    <div className={cn(
+      state == 'loading' ? 'visible' : 'hidden'
+    )}>Form is being submitted!</div>
   </Form>
 }
 

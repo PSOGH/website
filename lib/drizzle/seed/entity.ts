@@ -4,7 +4,7 @@ import { db, schema } from "../db";
 export async function seed_entity_data() {
   await db.delete(schema.entityTypes);
   await registerEntityTypes([
-    {entityTypeName: 'Person', id: 1},
+    {entityTypeName: 'Individual', id: 1},
     {entityTypeName: 'Organisation', id: 2},
   ]);
   await db.delete(schema.entityRoles);

@@ -59,7 +59,7 @@ export default function NavbarComponent({}: Props) {
     return targetReached;
   };
   const isBreakpoint = useMediaQuery(384)
-  return <nav className='bg-white border-gray-200 dark:bg-gray-900 sticky top-0 z-50 min-h-[75px] shadow py-1 px-1 flex flex-col lg:flex-row justify-between'>
+  return <nav className='bg-white border-gray-200 dark:bg-gray-900 sticky top-0 z-50 min-h-[75px] shadow py-1 px-1 flex flex-col 4xl:flex-row justify-between'>
     <div className='flex flex-row ml-4'>
       <ImageKit
         width={200}
@@ -72,52 +72,54 @@ export default function NavbarComponent({}: Props) {
         Punjabi Society of Greater Houston
       </h1>
     </div>
-    <div className='flex flex-row ml-auto mr-8 mt-auto mb-1 collapse md:visible'>
-      <NavigationMenu>
-        <NavigationMenuList>
-          {/* Home Menu Button */}
-          {HomeMenuItem(pathName)}
+    <div className='ml-auto mr-2 flex flex-row-reversed'>
+      <div className='flex flex-row ml-auto mr-8 mt-auto mb-1 collapse lg:visible'>
+        <NavigationMenu>
+          <NavigationMenuList>
+            {/* Home Menu Button */}
+            {HomeMenuItem(pathName)}
 
-          {/* About Menu Button */}
-          {AboutMenuItem(pathName)}
+            {/* About Menu Button */}
+            {AboutMenuItem(pathName)}
 
-          {/* Leadership Menu Button */}
-          {LeadershipMenuItem(pathName)}
+            {/* Leadership Menu Button */}
+            {LeadershipMenuItem(pathName)}
 
-          {/* Get Involved Menu Button */}
-          {GetInvolvedMenuItem(pathName)}
+            {/* Get Involved Menu Button */}
+            {GetInvolvedMenuItem(pathName)}
 
-          {/* Gallery Menu Button */}
-          {GalleryMenuItem(pathName)}
+            {/* Gallery Menu Button */}
+            {GalleryMenuItem(pathName)}
 
-          {/* Contact Us Menu Button */}
-          {ContactUsMenuItem(pathName)}
+            {/* Contact Us Menu Button */}
+            {ContactUsMenuItem(pathName)}
 
-          {/* Toggle Theme / Dark Mode */}
-          <ModeToggle />
-        </NavigationMenuList>
-      </NavigationMenu>
-    </div>
-    <div className='visible md:collapse ml-auto mr-2 flex flex-row'>
-      <div
-        className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-          state ? "block" : "hidden"
-        }`}
-      >
-        <Button asChild variant='ghost'><Link href='/home'>Home</Link></Button>
-        <Button asChild variant='ghost'><Link href='/about'>About</Link></Button>
-        <Button asChild variant='ghost'><Link href='/leadership'>Leadership</Link></Button>
-        <Button asChild variant='ghost'><Link href='/events'>Events</Link></Button>
-        <Button asChild variant='ghost'><Link href='/gallery'>Gallery</Link></Button>
+            {/* Toggle Theme / Dark Mode */}
+            {/* <ModeToggle /> */}
+          </NavigationMenuList>
+        </NavigationMenu>
       </div>
-      <div className="visible md:collapse ml-auto mr-2">
-        <Button
-          variant='outline'
-          // className="text-gray-700 outline-none p-2 rounded-md focus:border-gray-400 focus:border"
-          onClick={() => setState(!state)}
+      <div className='visible lg:collapse ml-auto mr-2 flex flex-row'>
+        <div
+          className={`flex-1 justify-self-center pb-3 mt-8 ${
+            state ? "block" : "hidden"
+          }`}
         >
-          <MenuIcon />
-        </Button>
+          <Button asChild variant='ghost'><Link href='/home'>Home</Link></Button>
+          <Button asChild variant='ghost'><Link href='/about'>About</Link></Button>
+          <Button asChild variant='ghost'><Link href='/leadership'>Leadership</Link></Button>
+          <Button asChild variant='ghost'><Link href='/events'>Events</Link></Button>
+          <Button asChild variant='ghost'><Link href='/gallery'>Gallery</Link></Button>
+        </div>
+        <div className="visible lg:collapse ml-auto mr-2">
+          <Button
+            variant='outline'
+            // className="text-gray-700 outline-none p-2 rounded-md focus:border-gray-400 focus:border"
+            onClick={() => setState(!state)}
+          >
+            <MenuIcon />
+          </Button>
+        </div>
       </div>
     </div>
   </nav>
@@ -127,7 +129,9 @@ export function getNavMenuItemLink(link: string, text: string, pathname: string)
   return <NavigationMenuItem>
   <Link href={link} legacyBehavior passHref>
     <NavigationMenuLink className={cn(
-      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50',
+      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors',
+      'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none',
+      'disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50',
       [link].includes(pathname) ? 'bg-accent/75 text-accent-foreground': '',
     )}>
       {text}
@@ -144,17 +148,21 @@ function getNavMenuItemDropdown(
   const allLinks = items.map(item => item.link)
   return <NavigationMenuItem>
     <NavigationMenuTrigger className={cn(
-      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50',
+      'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors',
+      'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none',
+      'disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50',
       allLinks.includes(pathname) ? 'bg-accent/75 text-accent-foreground': '',
     )}>
       {text}
     </NavigationMenuTrigger>
-    <NavigationMenuContent>
+    <NavigationMenuContent key={pathname}>
       <div className='grid w-[232px] gap-1 p-4 grid-cols-1'>
         {
           items.map(item => {
             return <a href={item.link} key={item.link} className={cn(
-              'group inline-flex h-9 w-max items-center justify-start rounded-md bg-background text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50',
+              'group inline-flex h-9 w-max items-center justify-start rounded-md bg-background text-sm font-medium transition-colors',
+              'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none',
+              'disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50',
               'w-[200px] pr-auto pl-4 py-auto',
               [item.link].includes(pathname) ? 'bg-accent/75 text-accent-foreground': '',
             )}>
