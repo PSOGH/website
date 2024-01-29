@@ -1,6 +1,7 @@
 'use server'
 import * as z from 'zod'
 import { sponsorFormSchema } from './form_schema'
+import getEmails from './generate_email';
 import { addSponsor } from '@/lib/drizzle/controllers/sponsor';
 import { addEntity } from '@/lib/drizzle/controllers/entity';
 import nodemailer from 'nodemailer';
@@ -43,11 +44,15 @@ export async function submitSponsor(data: z.infer<typeof sponsorFormSchema>) {
         requestBooth: data.sponsor_booth,
       });
 
+      const { thankYou, notify } = await getEmails(data)
+      console.log(thankYou)
+      console.log(notify)
+
       const mailOptions = {
         from: process.env.EMAIL_ID,
         to: data.contact_email,
         subject: 'Thank you for sponsoring PSOGH!',
-        html: `<p>Thank you for sponsoring PSOGH! We will be in touch soon.</p>`
+        html: thankYou
       };
 
       const emailInfo = await transporter.sendMail(mailOptions);
@@ -59,7 +64,7 @@ export async function submitSponsor(data: z.infer<typeof sponsorFormSchema>) {
         to: process.env.SPONSOR_EMAIL_IDS,
         // to: 's.gagan.preet@gmail.com',
         subject: 'A New Sponsorship Pledge has been recieved!',
-        html: `Sponsor ID: ${JSON.stringify(entity)}  Details: ${JSON.stringify(data, undefined, 2)}`
+        html: notify
       };
 
       const emailInfo2 = await transporter.sendMail(mailOptions2);
@@ -124,12 +129,15 @@ export async function submitSponsor(data: z.infer<typeof sponsorFormSchema>) {
         requestBooth: data.sponsor_booth,
       });
 
+      const { thankYou, notify } = await getEmails(data)
+      console.log(thankYou)
+      console.log(notify)
       
       const mailOptions = {
         from: process.env.EMAIL_ID,
         to: data.contact_email,
         subject: 'Thank you for sponsoring PSOGH!',
-        html: `<p>Thank you for sponsoring PSOGH! We will be in touch soon.</p>`
+        html: thankYou
       };
 
       const emailInfo = await transporter.sendMail(mailOptions);
@@ -141,7 +149,7 @@ export async function submitSponsor(data: z.infer<typeof sponsorFormSchema>) {
         to: process.env.SPONSOR_EMAIL_IDS,
         // to: 's.gagan.preet@gmail.com',
         subject: 'A New Sponsorship Pledge has been recieved!',
-        html: `Sponsor ID: ${JSON.stringify(entity)} Details: ${JSON.stringify(data)}`
+        html: notify
       };
 
       const emailInfo2 = await transporter.sendMail(mailOptions2);
