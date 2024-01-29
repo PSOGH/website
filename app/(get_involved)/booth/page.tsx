@@ -9,7 +9,7 @@ export default function BoothsPage({}: Props) {
     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
       Booths @ Vaisakhi Mela 2024
     </h2>
-    <Card className='w-full md:w-5/6 mt-6 mx-auto'>
+    <Card className='w-full md:w-5/6 mt-6 mx-auto hidden'>
     <CardHeader>
       <CardTitle>Registration Form</CardTitle>
       <CardDescription>Please use this form to register your business for the booth. Once the registration has been made and payment processed, you will recieve the confirmation of benefits. You can make payments using:</CardDescription>
@@ -24,6 +24,6 @@ export default function BoothsPage({}: Props) {
       <BoothFormElementComponent />
     </CardContent>
   </Card>
-    <iframe src="https://form.jotform.com/233449257926164" width="100%" height="100%" className="min-h-[800px] h-max"></iframe>
+    <iframe src="https://form.jotform.com/233449257926164" width="100%" height="100%" className="min-h-[1000px] h-max"></iframe>
   </>
 }
