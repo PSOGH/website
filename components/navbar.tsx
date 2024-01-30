@@ -73,7 +73,7 @@ export default function NavbarComponent({}: Props) {
       </h1>
     </div>
     <div className='ml-auto mr-2 flex flex-row-reversed'>
-      <div className='flex flex-row ml-auto mr-8 mt-auto mb-1 collapse lg:visible'>
+      <div className='lg:flex flex-row ml-auto mr-8 mt-auto mb-1 hidden lg:visible'>
         <NavigationMenu>
           <NavigationMenuList>
             {/* Home Menu Button */}
