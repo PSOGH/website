@@ -128,7 +128,7 @@ function SponsorFormElementComponent({ sponsor_types, sponsorshipLevels }: Props
                       />
                       <Label htmlFor={`${key}`} className='flex flex-row'>
                         <div className='mr-[1px]'>[ $</div>
-                        <div className='text-right mr-1 w-[63px]'>{
+                        <div className='text-right mr-1 w-[70px]'>{
                           ({
                             "1": 10000,
                             "2": 5000,
