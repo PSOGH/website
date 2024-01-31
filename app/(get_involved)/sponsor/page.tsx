@@ -4,6 +4,8 @@ import TitleRowComponent from './titleRow'
 import SponsorshipFormComponent from './sponsorship_form'
 import { getEntityTypes } from '@/lib/drizzle/controllers/entity'
 import { getSponsorshipLevels } from '@/lib/drizzle/controllers/sponsor'
+import { Button } from '@/components/ui/button'
+import { DownloadIcon } from 'lucide-react'
 
 type Props = {}
 const eventCode: string = 'va24'
@@ -52,9 +54,17 @@ export default async function SponsorPage({}: Props) {
         </tbody>
       </table>
       {/* <iframe src="https://drive.google.com/file/d/1dgzvSGNsSYo-a9Cu1g7TZYJovBwztwZP/preview" width="100%" height="100%" allow="autoplay" style={{minHeight: '500px'}}></iframe> */}
-      <div className="my-6 w-3/4 min-h-[480px] mx-auto">
+      <div className="my-6 w-3/4 min-h-[480px] mx-auto invisible md:visible">
         {/* <iframe src="https://drive.google.com/file/d/1zpftxp9ZO_deGf0FGxPezMOfUcQ2Z_h8/preview" width="100%" height="100%" allow="autoplay" style={{minHeight: '480px'}}></iframe> */}
         <iframe src="https://ik.imagekit.io/gps/psogh/va_24/PSGH-%20_VA23%20GENEROUS%20SPONSORSHIP%20PACKAGE-compressed.pdf" style={{width:'100%', height:'500px'}}></iframe>
+      </div>
+      <div className="my-6 w-3/4 min-h-[480px] mx-auto visible md:invisible">
+        {/* <iframe src="https://drive.google.com/file/d/1zpftxp9ZO_deGf0FGxPezMOfUcQ2Z_h8/preview" width="100%" height="100%" allow="autoplay" style={{minHeight: '480px'}}></iframe> */}
+        <Button asChild>
+          <a href="https://ik.imagekit.io/gps/psogh/va_24/PSGH-%20_VA23%20GENEROUS%20SPONSORSHIP%20PACKAGE-compressed.pdf">
+            <DownloadIcon className="mr-2 h-4 w-4" /> Download Generous Sponsorship Package
+          </a>
+        </Button>
       </div>
       
       <SponsorshipFormComponent event_code={'va24'} sponsor_types={sponsor_types} sponsorshipLevels={sponsorshipLevels} />
