@@ -54,9 +54,9 @@ export default async function SponsorPage({}: Props) {
         </tbody>
       </table>
       {/* <iframe src="https://drive.google.com/file/d/1dgzvSGNsSYo-a9Cu1g7TZYJovBwztwZP/preview" width="100%" height="100%" allow="autoplay" style={{minHeight: '500px'}}></iframe> */}
-      <div className="md:w-3/4 md:min-h-[560px] mx-auto invisible md:visible">
+      <div className="max-h-0 md:w-3/4 md:min-h-[560px] mx-auto invisible md:visible">
         {/* <iframe src="https://drive.google.com/file/d/1zpftxp9ZO_deGf0FGxPezMOfUcQ2Z_h8/preview" width="100%" height="100%" allow="autoplay" style={{minHeight: '480px'}}></iframe> */}
-        <iframe src="https://ik.imagekit.io/gps/psogh/va_24/PSGH-%20_VA23%20GENEROUS%20SPONSORSHIP%20PACKAGE-compressed.pdf" style={{width:'100%', height:'500px'}}></iframe>
+        <iframe src="https://ik.imagekit.io/gps/psogh/va_24/PSGH-%20_VA23%20GENEROUS%20SPONSORSHIP%20PACKAGE-compressed.pdf" style={{width:'100%', height:'550px'}}></iframe>
       </div>
       <div className="my-2 w-3/4 mx-auto visible md:invisible">
         {/* <iframe src="https://drive.google.com/file/d/1zpftxp9ZO_deGf0FGxPezMOfUcQ2Z_h8/preview" width="100%" height="100%" allow="autoplay" style={{minHeight: '480px'}}></iframe> */}
