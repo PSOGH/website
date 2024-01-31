@@ -15,8 +15,8 @@ export const sponsorFormSchema = z.object({
   contact_city: z.string(),
   contact_state: z.string(),
   contact_zip: z.string().regex(/^\d{5}$/),
-  sponsor_logo_filename: z.string(),
-  sponsor_logo_file: z.string(),
+  sponsor_logo_filename: z.string().optional(),
+  sponsor_logo_file: z.string().optional(),
   sponsor_booth: z.boolean(),
   sponsor_introduction: z.string(),
 })

@@ -25,7 +25,8 @@ export async function submitSponsor(data: z.infer<typeof sponsorFormSchema>) {
         [data.contact_email],
         [data.contact_phone],
         [],
-        [[data.sponsor_logo_file, data.sponsor_logo_filename]],
+        (data.sponsor_logo_file && data.sponsor_logo_filename) ? [[data.sponsor_logo_file, data.sponsor_logo_filename]] : ([] as string[][]),
+        // [[data.sponsor_logo_file, data.sponsor_logo_filename]],
         [{
           address: data.contact_address,
           address2: data.contact_address2 || '',
@@ -117,7 +118,7 @@ export async function submitSponsor(data: z.infer<typeof sponsorFormSchema>) {
         [],
         [],
         [],
-        [[data.sponsor_logo_file, data.sponsor_logo_filename]],
+        (data.sponsor_logo_file && data.sponsor_logo_filename) ? [[data.sponsor_logo_file, data.sponsor_logo_filename]] : ([] as string[][]),
         [],
         [entity]
       )
@@ -176,10 +177,4 @@ export async function submitSponsor(data: z.infer<typeof sponsorFormSchema>) {
       }
     }
   }
-}
-
-
-function constructEmail(data: z.infer<typeof sponsorFormSchema>) {
-  var emailBody = ""
-  return emailBody
 }
