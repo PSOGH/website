@@ -23,7 +23,7 @@ export default function Vaisakhi24({}: Props) {
       </CardHeader>
       <CardContent className='text-xl'>
         <Link href='/events/va_24'>
-          <ImageKit src='IMG_7286.jpg.jpeg' width={1200} alt='Vaisakhi Mela 2024' className='w-full' />
+          <ImageKit src='IMG_7286.jpg.jpeg?updatedAt=1712425951552' width={1200} alt='Vaisakhi Mela 2024' className='w-full' />
         </Link>
       </CardContent>
       <CardFooter className='text-xl w-full'>
