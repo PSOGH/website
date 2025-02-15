@@ -33,7 +33,7 @@ export default function HomePage({ }: Props) {
       </CardContent>
       <CardFooter className='text-xl w-full'>
         <div className='grid grid-cols-10 gap-2 mt-2 w-full'>
-          <Button asChild className='col-span-10 md:col-span-8 md:col-start-2 bg-amber-300 text-gray-700 hover:bg-amber-600 hover:text-gray-50 font-semibold' variant={'outline'}><Link href='/events/va_24'>Learn More</Link></Button>
+          <Button asChild className='col-span-10 md:col-span-8 md:col-start-2 bg-amber-300 text-gray-700 hover:bg-amber-600 hover:text-gray-50 font-semibold' variant={'outline'}><Link href='/events/va_25'>Learn More</Link></Button>
           <Button asChild className='col-span-8 col-start-2 md:col-span-2 md:col-start-2 bg-emerald-600 text-gray-50 hover:bg-emerald-200 hover:text-gray-700' variant={'outline'}><Link href='/volunteer'><HeartHandshakeIcon className='mr-2' /> Get Involved</Link></Button>
           <TicketButtonComponent />
           <Button asChild className='col-span-8 col-start-2 md:col-span-2 md:col-start-6 bg-green-600 text-gray-50 hover:bg-green-200 hover:text-gray-700' variant={'outline'}><Link href='/sponsor'><DollarSignIcon className='mr-2' /> Sponsorship</Link></Button>

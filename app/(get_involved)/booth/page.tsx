@@ -1,5 +1,4 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import React from 'react'
 import BoothFormElementComponent from './form_component'
 
 type Props = {}
@@ -7,7 +6,7 @@ type Props = {}
 export default function BoothsPage({}: Props) {
   return <>
     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-      Booths @ Vaisakhi Mela 2024
+      Booths @ Vaisakhi Mela 2025
     </h2>
     <Card className='w-full md:w-5/6 mt-6 mx-auto hidden'>
     <CardHeader>
