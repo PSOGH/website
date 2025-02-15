@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 
 type Props = {}
 
-export default function HomePage({}: Props) {
+export default function HomePage({ }: Props) {
   return <>
     <video autoPlay loop muted className='min-w-full'>
       <source src="https://ik.imagekit.io/gps/psogh/historic_pics/PSGH%20WEBSITE%20VIDEO.mp4" />
