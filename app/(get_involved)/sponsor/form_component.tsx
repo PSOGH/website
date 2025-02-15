@@ -1,11 +1,10 @@
 'use client'
-import { LoaderIcon } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import { z } from 'zod'
+import { z } from 'zod';
 
-import { zodResolver } from '@hookform/resolvers/zod'
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -16,9 +15,9 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 
+import { cn } from '@/lib/utils';
 import { sponsorFormSchema } from './form_schema';
 import { submitSponsor } from './submit_sponsor';
-import { cn } from '@/lib/utils';
 
 type Props = {
   sponsor_types: {key: number, value: string}[]
@@ -130,12 +129,13 @@ function SponsorFormElementComponent({ sponsor_types, sponsorshipLevels }: Props
                         <div className='mr-[1px]'>[ $</div>
                         <div className='text-right mr-1 w-[70px]'>{
                           ({
-                            "1": 10000,
-                            "2": 5000,
-                            "3": 2500,
+                            "1": 5000,
+                            "2": 2500,
+                            "3": 2000,
                             "4": 1500,
                             "5": 1000,
-                            "6": 500
+                            "6": 500,
+                            "7": 250,
                           }[key] || 0).toFixed(0).replace(/\d{1,3}(?=(\d{3})+)/g, '$&,')
                         } ]</div>
                         <div className="">- {value}</div>
