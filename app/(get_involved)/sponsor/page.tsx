@@ -1,11 +1,10 @@
-import React from 'react'
-import RowComponent from './Row'
-import TitleRowComponent from './titleRow'
-import SponsorshipFormComponent from './sponsorship_form'
+import { Button } from '@/components/ui/button'
 import { getEntityTypes } from '@/lib/drizzle/controllers/entity'
 import { getSponsorshipLevels } from '@/lib/drizzle/controllers/sponsor'
-import { Button } from '@/components/ui/button'
 import { DownloadIcon } from 'lucide-react'
+import RowComponent from './Row'
+import SponsorshipFormComponent from './sponsorship_form'
+import TitleRowComponent from './titleRow'
 
 type Props = {}
 const eventCode: string = 'va24'
@@ -23,7 +22,7 @@ export default async function SponsorPage({}: Props) {
   const sponsor_types: {key: number, value: string}[] = sponsor_types_raw.map((entityType) => {return {key: entityType.id, value: entityType.entityTypeName || ''}})
   return <>
     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-      Sponsorship for Vaisakhi Mela 2024
+      Sponsorship for Vaisakhi Mela 2025
     </h2>
     <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
       Sponsorship Packages
