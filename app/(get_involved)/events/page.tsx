@@ -1,5 +1,6 @@
 import Vaisakhi2023 from './va_23'
 import Vaisakhi2024 from './va_24'
+import Vaisakhi2025 from './va_25'
 
 type Props = {}
 
