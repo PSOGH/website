@@ -1,12 +1,11 @@
 'use client'
-import React from 'react'
+import { DollarSignIcon, HeartHandshakeIcon, StoreIcon } from 'lucide-react'
 import Link from 'next/link'
-import { DollarSignIcon, HeartHandshakeIcon, StoreIcon, TicketIcon } from 'lucide-react'
 
+import TicketButtonComponent from '@/app/(get_involved)/events/ticketButtonComponent'
+import ImageKit from '@/components/imagekit'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import ImageKit from '@/components/imagekit'
-import TicketButtonComponent from '@/app/(get_involved)/events/ticketButtonComponent'
 
 type Props = {}
 
@@ -17,8 +16,8 @@ export default function HomePage({}: Props) {
     </video>
     <Card className='mt-2'>
       <CardHeader className='text-xl font-bold'>
-        <CardTitle>Upcoming Event: Grand Vaisakhi Mela 2024</CardTitle>
-        <CardDescription>April 20, 2024 | <a target="_blank" rel="noreferrer" href='https://maps.app.goo.gl/GBBsvfdFb6KKHguE8'>Dunham Theatre</a></CardDescription>
+        <CardTitle>Upcoming Event: Grand Vaisakhi Mela 2025</CardTitle>
+        <CardDescription>April 19, 2025 | <a target="_blank" rel="noreferrer" href='https://maps.app.goo.gl/1fUMQZfK11EHwdE56'>Stafford Center Auditorium</a></CardDescription>
         <div className='grid grid-cols-10 gap-2 mt-2'>
           <div className='col-span-10 text-left text-xl font-bold'></div>
           <Button asChild className='col-span-8 col-start-2 md:col-span-2 md:col-start-2 bg-emerald-600 text-gray-50 hover:bg-emerald-200 hover:text-gray-700' variant={'outline'}><Link href='/volunteer'><HeartHandshakeIcon className='mr-2' /> Get Involved</Link></Button>
@@ -29,7 +28,7 @@ export default function HomePage({}: Props) {
       </CardHeader>
       <CardContent className='text-xl'>
         <Link href='/events/va_24'>
-          <ImageKit src='IMG_7286.jpg.jpeg' width={1200} alt='Vaisakhi Mela 2024' className='w-full' />
+          <ImageKit src='va_25' width={1200} alt='Vaisakhi Mela 2024' className='w-full' />
         </Link>
       </CardContent>
       <CardFooter className='text-xl w-full'>
