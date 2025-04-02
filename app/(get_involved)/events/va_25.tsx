@@ -8,7 +8,7 @@ import TicketButtonComponent from './ticketButtonComponent'
 
 type Props = {}
 
-export default function Vaisakhi2025({}: Props) {
+export default function Vaisakhi2025({ }: Props) {
   return <Card>
     <CardHeader>
       <CardTitle>Vaisakhi Mela 2025</CardTitle>
@@ -21,9 +21,9 @@ export default function Vaisakhi2025({}: Props) {
       </div>
     </CardHeader>
     <CardContent>
-        <Link href='/events/va_25'>
-          <ImageKit src='va_25.jpg' width={1200} alt='Vaisakhi Mela 2024' className='w-full' />
-        </Link>
+      <Link href='/events/va_25'>
+        <ImageKit src='va_25_2.jpg' width={1200} alt='Vaisakhi Mela 2024' className='w-full' />
+      </Link>
     </CardContent>
     <CardFooter>
       <div className='grid grid-cols-10 gap-2 mt-2 w-full'>

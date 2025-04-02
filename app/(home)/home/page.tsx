@@ -28,7 +28,7 @@ export default function HomePage({ }: Props) {
       </CardHeader>
       <CardContent className='text-xl'>
         <Link href='/events/va_25'>
-          <ImageKit src='va_25.jpg' width={1200} alt='Vaisakhi Mela 2024' className='w-full' />
+          <ImageKit src='va_25_2.jpg' width={1200} alt='Vaisakhi Mela 2024' className='w-full' />
         </Link>
       </CardContent>
       <CardFooter className='text-xl w-full'>
