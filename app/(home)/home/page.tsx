@@ -16,8 +16,8 @@ export default function HomePage({ }: Props) {
     </video>
     <Card className='mt-2'>
       <CardHeader className='text-xl font-bold'>
-        <CardTitle>Upcoming Event: Grand Vaisakhi Mela 2025</CardTitle>
-        <CardDescription>April 19, 2025 | <a target="_blank" rel="noreferrer" href='https://maps.app.goo.gl/1fUMQZfK11EHwdE56'>Stafford Center Auditorium</a></CardDescription>
+        <CardTitle>Upcoming Event: Grand Vaisakhi Night: Gajda Wajda Punjab 2026</CardTitle>
+        <CardDescription>April 18, 2026 | 5:00 – 9:30 PM CDT | <a target="_blank" rel="noreferrer" href='https://maps.app.goo.gl/GPqcerMR6RFncWqv5'>GSH Event Center</a></CardDescription>
         <div className='grid grid-cols-10 gap-2 mt-2'>
           <div className='col-span-10 text-left text-xl font-bold'></div>
           <Button asChild className='col-span-8 col-start-2 md:col-span-2 md:col-start-2 bg-emerald-600 text-gray-50 hover:bg-emerald-200 hover:text-gray-700' variant={'outline'}><Link href='/volunteer'><HeartHandshakeIcon className='mr-2' /> Get Involved</Link></Button>
@@ -27,15 +27,13 @@ export default function HomePage({ }: Props) {
         </div>
       </CardHeader>
       <CardContent className='text-xl'>
-        <Link href='/events/va_25'>
-          <ImageKit src='Banner.jpg' width={1200} alt='Vaisakhi Mela 2024' className='w-full' />
-          <ImageKit src='Raffle.jpg' width={1200} alt='Vaisakhi Mela 2024' className='w-full' />
-          <ImageKit src='va_25_2.jpg' width={1200} alt='Vaisakhi Mela 2024' className='w-full' />
+        <Link href='/events/va_26'>
+          <ImageKit src='va_26.jpeg' width={1200} alt='Grand Vaisakhi Night 2026' className='w-full' />
         </Link>
       </CardContent>
       <CardFooter className='text-xl w-full'>
         <div className='grid grid-cols-10 gap-2 mt-2 w-full'>
-          <Button asChild className='col-span-10 md:col-span-8 md:col-start-2 bg-amber-300 text-gray-700 hover:bg-amber-600 hover:text-gray-50 font-semibold' variant={'outline'}><Link href='/events/va_25'>Learn More</Link></Button>
+          <Button asChild className='col-span-10 md:col-span-8 md:col-start-2 bg-amber-300 text-gray-700 hover:bg-amber-600 hover:text-gray-50 font-semibold' variant={'outline'}><Link href='/events/va_26'>Learn More</Link></Button>
           <Button asChild className='col-span-8 col-start-2 md:col-span-2 md:col-start-2 bg-emerald-600 text-gray-50 hover:bg-emerald-200 hover:text-gray-700' variant={'outline'}><Link href='/volunteer'><HeartHandshakeIcon className='mr-2' /> Get Involved</Link></Button>
           <TicketButtonComponent />
           <Button asChild className='col-span-8 col-start-2 md:col-span-2 md:col-start-6 bg-green-600 text-gray-50 hover:bg-green-200 hover:text-gray-700' variant={'outline'}><Link href='/sponsor'><DollarSignIcon className='mr-2' /> Sponsorship</Link></Button>

@@ -56,12 +56,12 @@ export default async function SponsorPage({}: Props) {
       <div className="max-h-0 md:w-3/4 md:min-h-[540px] mx-auto invisible md:visible">
         {/* <iframe src="https://drive.google.com/file/d/1zpftxp9ZO_deGf0FGxPezMOfUcQ2Z_h8/preview" width="100%" height="100%" allow="autoplay" style={{minHeight: '480px'}}></iframe> */}
         {/* <iframe src="https://ik.imagekit.io/gps/psogh/va_24/PSGH-%20_VA23%20GENEROUS%20SPONSORSHIP%20PACKAGE-compressed.pdf" style={{width:'100%', height:'530px'}}></iframe> */}
-        <iframe src="https://ik.imagekit.io/gps/psogh/va_25/_VA25%20GENEROUS%20SPONSORSHIP%20PACKAGE-compressed.pdf?updatedAt=1739654855389" style={{width:'100%', height:'530px'}}></iframe>
+        <iframe src="https://ik.imagekit.io/gps/psogh/va_26/_VA26%20GENEROUS%20SPONSORSHIP%20PACKAGE-compressed.pdf.pdf?updatedAt=1772236365228" style={{width:'100%', height:'530px'}}></iframe>
       </div>
       <div className="my-2 w-3/4 mx-auto visible md:invisible">
         {/* <iframe src="https://drive.google.com/file/d/1zpftxp9ZO_deGf0FGxPezMOfUcQ2Z_h8/preview" width="100%" height="100%" allow="autoplay" style={{minHeight: '480px'}}></iframe> */}
         <Button asChild>
-          <a href="https://ik.imagekit.io/gps/psogh/va_25/_VA25%20GENEROUS%20SPONSORSHIP%20PACKAGE-compressed.pdf?updatedAt=1739654855389">
+          <a href="https://ik.imagekit.io/gps/psogh/va_26/_VA26%20GENEROUS%20SPONSORSHIP%20PACKAGE-compressed.pdf.pdf?updatedAt=1772236365228">
             <DownloadIcon className="mr-2 h-4 w-4" /> Download Generous Sponsorship Package
           </a>
         </Button>

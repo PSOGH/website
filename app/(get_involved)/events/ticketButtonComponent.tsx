@@ -7,7 +7,7 @@ type Props = {}
 
 function TicketButtonComponent({ }: Props) {
   return <>
-    <Button asChild className='col-span-8 col-start-2 md:col-span-2 md:col-start-4 bg-teal-600 text-gray-50 hover:bg-teal-200 hover:text-gray-700' variant={'outline'}><a href='https://www.etix.com/ticket/p/55618256/grand-vaisakhi-2025-gajda-wajda-punjab-stafford-official-box-office-for-stafford-centre'><TicketIcon className='mr-2' /> Tickets</a></Button>
+    <Button asChild className='col-span-8 col-start-2 md:col-span-2 md:col-start-4 bg-teal-600 text-gray-50 hover:bg-teal-200 hover:text-gray-700' variant={'outline'}><a href='https://www.eventbrite.com/e/gajda-wajda-punjab-grand-vaisakhi-night-tickets-1982831648838'><TicketIcon className='mr-2' /> Tickets</a></Button>
     {/* <Button asChild className='col-span-8 col-start-2 md:col-span-2 md:col-start-4 bg-teal-600 text-gray-50 hover:bg-teal-200 hover:text-gray-700 md:hidden' variant={'outline'}><a href='https://www.etix.com/ticket/p/55618256/grand-vaisakhi-2025-gajda-wajda-punjab-stafford-official-box-office-for-stafford-centre'><TicketIcon className='mr-2' /> Tickets</a></Button> */}
     {/* <Button asChild className='col-span-8 col-start-2 md:col-span-2 md:col-start-4 bg-teal-600 text-gray-50 hover:bg-teal-200 hover:text-gray-700 hidden md:flex' variant={'outline'}><a href="https://www.etix.com/ticket/p/55618256/grand-vaisakhi-2025-gajda-wajda-punjab-stafford-official-box-office-for-stafford-centre"><TicketIcon className='mr-2' /> Tickets</a></Button> */}
     {/* <Dialog>
